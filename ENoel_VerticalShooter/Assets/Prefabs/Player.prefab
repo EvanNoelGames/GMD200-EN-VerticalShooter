@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 626427212394479504}
   - component: {fileID: 4334597634157793463}
   - component: {fileID: 863730349115273493}
-  - component: {fileID: 1880129149727055638}
+  - component: {fileID: 6649822295634843821}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6576188277897073239}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &626427212394479504
@@ -99,6 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96df0912c8de6804b80c73d83b97dc94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnLocation: {fileID: 6576188277897073239}
+  laserPrefab: {fileID: 3526957543148386563, guid: 0f99d6c92090327408ff326de1c7f583, type: 3}
   bulletPrefab: {fileID: 3526957543148386563, guid: 0f99d6c92090327408ff326de1c7f583, type: 3}
   bulletSpeed: 10
 --- !u!50 &863730349115273493
@@ -128,7 +131,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &1880129149727055638
+--- !u!114 &6649822295634843821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,11 +140,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 621503424123479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4cb87521f0a4e41825e4235d800c3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 97f01f9eb26e6f94c8bc2d1b5c6cc0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: {x: 10, y: 5}
-  boundsLeft: -3.25
-  boundsRight: 3.25
-  boundsUp: -2.5
-  boundsDown: -6.55
+  rotationSpeed: 360
+--- !u!1 &2910008555943101056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6576188277897073239}
+  m_Layer: 0
+  m_Name: LaserSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6576188277897073239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2910008555943101056}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6378406049967772278}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

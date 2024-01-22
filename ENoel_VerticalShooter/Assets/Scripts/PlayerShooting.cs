@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-    public float bulletSpeed = 10.0f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Transform spawnLocation;
+    [SerializeField] GameObject bulletPrefab;
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // shoot bullet
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-            bulletRB.velocity = transform.up * bulletSpeed;
+            Fire();
         }
+    }
+
+    private void Fire()
+    {
+        // Shoot bullet
+        Instantiate(bulletPrefab, spawnLocation.position, spawnLocation.rotation);
     }
 }
