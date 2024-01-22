@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private float respawnY = 10;
     private float _respawnX;
 
@@ -28,8 +29,21 @@ public class Enemy : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log("down");
+        Despawn();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Laser"))
+        {
+            Despawn();
+        }
+    }
+
+    private void Despawn()
+    {
         gameObject.SetActive(false);
         GameManager.instance.UnlistEnemy(gameObject);
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
     }
 }

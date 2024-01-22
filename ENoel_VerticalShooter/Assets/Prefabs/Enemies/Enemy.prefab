@@ -143,7 +143,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -177,3 +177,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e41a9f4f5e6534a85994bde0496cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 3706180792576682218, guid: 1623a85b56ef9f6479d362139844548b, type: 3}
+  respawnY: 10
