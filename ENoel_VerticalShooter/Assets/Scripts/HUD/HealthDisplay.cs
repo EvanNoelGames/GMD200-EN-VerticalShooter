@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class HealthDisplay : MonoBehaviour
 {
     [SerializeField] private Image[] heartImages;
-    [SerializeField] private int numSegments = 4;
 
     private void OnEnable()
     {
@@ -26,7 +25,7 @@ public class HealthDisplay : MonoBehaviour
         Debug.Log("Health " + health);
         for (int i = 0; i < heartImages.Length; i++)
         {
-            heartImages[i].fillAmount = (health - i * numSegments) / (float) numSegments;
+            heartImages[i].fillAmount = health - i;
         }
     }
 }

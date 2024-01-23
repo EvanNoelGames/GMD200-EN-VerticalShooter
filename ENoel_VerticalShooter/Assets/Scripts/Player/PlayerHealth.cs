@@ -6,7 +6,7 @@ using UnityEngine;
 public static class PlayerHealth
 {
     public static event Action<int> healthChanged;
-    private static int _health = 20;
+    private static int _health = 3;
 
     public static int GetHealth()
     {
