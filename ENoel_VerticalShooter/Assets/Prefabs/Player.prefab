@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 626427212394479504}
   - component: {fileID: 4334597634157793463}
   - component: {fileID: 863730349115273493}
-  - component: {fileID: 6649822295634843821}
+  - component: {fileID: 4377108325288969704}
+  - component: {fileID: 5237258022059080512}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -101,9 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnLocation: {fileID: 6576188277897073239}
-  laserPrefab: {fileID: 3526957543148386563, guid: 0f99d6c92090327408ff326de1c7f583, type: 3}
   bulletPrefab: {fileID: 3526957543148386563, guid: 0f99d6c92090327408ff326de1c7f583, type: 3}
-  bulletSpeed: 10
 --- !u!50 &863730349115273493
 Rigidbody2D:
   serializedVersion: 4
@@ -131,7 +130,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &6649822295634843821
+--- !u!114 &4377108325288969704
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,10 +139,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 621503424123479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97f01f9eb26e6f94c8bc2d1b5c6cc0fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 19362775e8b2fac4593d5544ad9e8488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 360
+--- !u!114 &5237258022059080512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621503424123479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4cb87521f0a4e41825e4235d800c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: {x: 5, y: 5}
+  boundsLeft: -5
+  boundsRight: 5
+  boundsUp: -2
+  boundsDown: -15
 --- !u!1 &2910008555943101056
 GameObject:
   m_ObjectHideFlags: 0
