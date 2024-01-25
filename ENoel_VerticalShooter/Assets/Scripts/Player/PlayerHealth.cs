@@ -7,6 +7,7 @@ public static class PlayerHealth
 {
     public static event Action<int> healthChanged;
     private static int _health = 3;
+    private static bool gameRunning = true;
 
     public static int GetHealth()
     {
@@ -22,5 +23,15 @@ public static class PlayerHealth
 
         _health = health;
         healthChanged?.Invoke(_health);
+    }
+
+    public static bool GetGameRunning()
+    {
+        return gameRunning;
+    }
+
+    public static void SetGameOver()
+    {
+        gameRunning = false;
     }
 }

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] enemyArray;
     [SerializeField] private List<GameObject> activeEnemyList;
 
+    public bool gameRunning = true;
+
     private void Awake()
     {
         instance = this;
