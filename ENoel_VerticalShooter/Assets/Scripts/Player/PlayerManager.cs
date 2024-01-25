@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
 
     private void GameIsOver()
     {
-        gameObject.SetActive(false);
         Instantiate(explosionPrefab, transform.position, transform.rotation);
+        gameObject.SetActive(false);
     }
 }

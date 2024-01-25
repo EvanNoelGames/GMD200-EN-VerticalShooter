@@ -11,6 +11,13 @@ public static class PlayerWeaponsManager
     // determines how fast the player's lasers travel
     public static float laserSpeed = 10f;
 
+    public static void ResetEverything()
+    {
+        timeBetweenShots = 0.25f;
+        penetrationRounds = false;
+        laserSpeed = 10f;
+    }
+
     public static float GetTimeBetweenShots()
     {
         return timeBetweenShots;

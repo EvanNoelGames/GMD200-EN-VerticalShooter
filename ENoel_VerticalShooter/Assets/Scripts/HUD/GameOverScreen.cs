@@ -42,11 +42,17 @@ public class GameOverScreen : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
+        PlayerScore.SetScore(0);
+        PlayerHealth.SetHealth(3);
+        PlayerHealth.SetGameRunning(true);
+        PlayerWeaponsManager.ResetEverything();
     }
 
     IEnumerator Co_WaitForGameOver()
     {
         yield return new WaitForSeconds(1.5f);
+        Time.timeScale = 0f;
         GetComponent<Canvas>().enabled = true;
         buttons.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);

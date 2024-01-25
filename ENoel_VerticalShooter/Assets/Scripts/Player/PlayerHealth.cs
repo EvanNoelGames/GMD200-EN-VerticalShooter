@@ -8,7 +8,7 @@ public static class PlayerHealth
     public static event Action gameOver;
 
     public static event Action<int> healthChanged;
-    private static int _health = 1;
+    private static int _health = 3;
     private static bool gameRunning = true;
 
     public static int GetHealth()
@@ -42,10 +42,14 @@ public static class PlayerHealth
         return gameRunning;
     }
 
+    public static void SetGameRunning(bool newValue)
+    {
+        gameRunning = newValue;
+    }
+
     public static void GameOver()
     {
         gameRunning = false;
-        Time.timeScale = 0f;
         gameOver();
     }
 }

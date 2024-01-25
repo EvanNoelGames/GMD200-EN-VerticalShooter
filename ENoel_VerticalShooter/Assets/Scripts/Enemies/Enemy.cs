@@ -31,11 +31,6 @@ public class Enemy : MonoBehaviour
         _rigidbody2D.velocity = Vector2.zero;
     }
 
-    public void OnMouseDown()
-    {
-        Despawn();
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
 
