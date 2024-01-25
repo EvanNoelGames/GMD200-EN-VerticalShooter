@@ -5,24 +5,22 @@ using System;
 
 public class PlayerManager : MonoBehaviour
 {
+    public GameObject explosionPrefab;
 
-    public static event Action gameOver;
+    private void Awake()
+    {
+        PlayerHealth.gameOver += GameIsOver;
+    }
 
     [ContextMenu("damage")]
     public void TakeDamage()
     {
-        PlayerHealth.SetHealth(PlayerHealth.GetHealth() - 1);
-
-        if (PlayerHealth.GetHealth() <= 0)
-        {
-            GameOver();
-        } 
+        PlayerHealth.TakeDamage();
     }
 
-    public void GameOver()
+    private void GameIsOver()
     {
-        PlayerHealth.SetGameOver();
-        Time.timeScale = 0f;
-        gameOver();
+        gameObject.SetActive(false);
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
     }
 }
