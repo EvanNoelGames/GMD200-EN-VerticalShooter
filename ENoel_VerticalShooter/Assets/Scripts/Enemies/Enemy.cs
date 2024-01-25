@@ -70,6 +70,8 @@ public class Enemy : MonoBehaviour
 
     private void Despawn()
     {
+        cameraCollision = false;
+        laserCollision = false;
         PlayerScore.SetScore(PlayerScore.GetScore() + 10);
         gameObject.SetActive(false);
         GameManager.instance.UnlistEnemy(gameObject);

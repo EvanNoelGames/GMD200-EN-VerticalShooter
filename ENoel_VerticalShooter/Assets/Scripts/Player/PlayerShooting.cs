@@ -8,13 +8,14 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private Transform bulletSpawnLocation;
     [SerializeField] GameObject bulletPrefab;
 
-    public float timeBetweenShots = 0.25f;
+    public AudioSource laserSound;
+
     private bool maxShotsReached = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !maxShotsReached)
+        if (Input.GetButtonDown("Fire1") && !maxShotsReached)
         {
             StartCoroutine(Co_ShootRoutine());
         }
@@ -30,9 +31,10 @@ public class PlayerShooting : MonoBehaviour
     {
         if (!maxShotsReached)
         {
+            laserSound.Play();
             maxShotsReached = true;
             Fire();
-            yield return new WaitForSeconds(timeBetweenShots);
+            yield return new WaitForSeconds(PlayerWeaponsManager.GetTimeBetweenShots());
             maxShotsReached = false;
         }
     }
