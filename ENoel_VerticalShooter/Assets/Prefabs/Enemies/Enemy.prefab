@@ -179,3 +179,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 3706180792576682218, guid: 1623a85b56ef9f6479d362139844548b, type: 3}
   respawnY: 10
+  cameraZone: {fileID: 2605938427720555167, guid: c31aa12d5f8f3f040a3274877c51d882, type: 3}

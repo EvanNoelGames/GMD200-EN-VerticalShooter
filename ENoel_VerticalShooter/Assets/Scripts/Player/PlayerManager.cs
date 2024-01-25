@@ -9,10 +9,4 @@ public class PlayerManager : MonoBehaviour
     {
         PlayerHealth.SetHealth(PlayerHealth.GetHealth() - 1);
     }
-
-    [ContextMenu("addScore")]
-    public void AddScore(int amount)
-    {
-        PlayerScore.SetScore(PlayerScore.GetScore() + amount);
-    }
 }
