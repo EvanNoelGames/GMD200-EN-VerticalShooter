@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System;
@@ -9,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
-    public GameObject buttons, restartButton, lastSelectedButton;
+    public GameObject buttons, restartButton, homeButton, lastSelectedButton;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class GameOverScreen : MonoBehaviour
 
     private void Update()
     {
+
         if (EventSystem.current.currentSelectedGameObject != null && GetComponent<Canvas>().enabled)
         {
             lastSelectedButton = EventSystem.current.currentSelectedGameObject;
@@ -37,11 +39,17 @@ public class GameOverScreen : MonoBehaviour
     public void SwitchToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        ResetPlayer();
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        ResetPlayer();
+    }
+
+    public void ResetPlayer()
+    {
         Time.timeScale = 1f;
         PlayerScore.SetScore(0);
         PlayerHealth.SetHealth(3);

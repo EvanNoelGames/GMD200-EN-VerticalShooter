@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -355,6 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttons: {fileID: 658640555}
   restartButton: {fileID: 201187980}
+  homeButton: {fileID: 406480828}
   lastSelectedButton: {fileID: 201187980}
 --- !u!4 &171992100 stripped
 Transform:
@@ -422,7 +423,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.17254902, g: 1, b: 0.16470589, a: 1}
     m_SelectedColor: {r: 0.17254902, g: 1, b: 0.16470589, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -544,7 +545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0.35686275}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 8, y: 8, z: 8, w: 8}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -634,7 +635,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.17254902, g: 1, b: 0.16470589, a: 1}
     m_SelectedColor: {r: 0.17254902, g: 1, b: 0.16470589, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -994,7 +995,6 @@ GameObject:
   - component: {fileID: 658640559}
   - component: {fileID: 658640558}
   - component: {fileID: 658640557}
-  - component: {fileID: 658640560}
   - component: {fileID: 658640562}
   m_Layer: 5
   m_Name: GameOverDisplay
@@ -1088,18 +1088,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!225 &658640560
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658640555}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!222 &658640562
 CanvasRenderer:
   m_ObjectHideFlags: 0
