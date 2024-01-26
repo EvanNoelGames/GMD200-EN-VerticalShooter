@@ -29,7 +29,8 @@ public static class PlayerHealth
 
     public static void TakeDamage()
     {
-        _health = _health - 1;
+        Debug.Log("Hit");
+        _health--;
         healthChanged?.Invoke(_health);
         if (_health <= 0)
         {

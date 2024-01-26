@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Laser
   - Camera Zone
+  - Enemy Shield
+  - Shield
+  - Enemy Sniper
   layers:
   - Default
   - TransparentFX

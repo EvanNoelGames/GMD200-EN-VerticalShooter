@@ -25,9 +25,13 @@ public class Laser : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.CompareTag("Enemy") && !PlayerWeaponsManager.GetPenetrationRounds())
+        if ((other.gameObject.CompareTag("Enemy") || (other.gameObject.CompareTag("Enemy Sniper")) && !PlayerWeaponsManager.GetPenetrationRounds()))
         {
             StartCoroutine(Co_DestroyLaserRoutine());
+        }
+        else if (other.gameObject.CompareTag("Enemy Shield") && !PlayerWeaponsManager.GetPenetrationRounds())
+        {
+            Destroy(gameObject);
         }
     }
 
