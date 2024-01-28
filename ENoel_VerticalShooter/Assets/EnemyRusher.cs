@@ -35,6 +35,7 @@ public class EnemyRusher : MonoBehaviour
         if (!hasShield)
         {
             Destroy(gameObject.transform.Find("Shield").gameObject);
+            enemy.AddMultiplier(-5);
         }
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();

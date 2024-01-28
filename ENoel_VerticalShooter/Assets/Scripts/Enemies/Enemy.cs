@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     public type enemyType;
     public bool shieldUp = false;
 
-    private int scoreMultiplier = 1;
+    private int scoreMultiplier = 10;
 
     [SerializeField] private GameObject explosionPrefab;
 
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
     {
         if (enemyType == type.sniper)
         {
-            scoreMultiplier = 3;
+            AddMultiplier(20);
         }
     }
 
@@ -66,6 +66,11 @@ public class Enemy : MonoBehaviour
             cameraCollision = false;
         }
 
+    }
+
+    public void AddMultiplier(int amt)
+    {
+        scoreMultiplier += amt;
     }
 
     private void Despawn()

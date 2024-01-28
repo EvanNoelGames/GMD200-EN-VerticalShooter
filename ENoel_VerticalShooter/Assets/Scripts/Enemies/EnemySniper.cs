@@ -27,11 +27,13 @@ public class EnemySniper : MonoBehaviour
     public GameObject bulletPrefab, shield;
     public Transform bulletSpawnLocation;
 
+    public float aggression = 1f;
+
     private void Awake()
     {
         status = state.moving;
         _rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(Co_SwitchMode(Random.Range(3f, 10f)));
+        StartCoroutine(Co_SwitchMode(Random.Range(3f / aggression, 10f / aggression)));
     }
 
     private void Update()
@@ -86,13 +88,13 @@ public class EnemySniper : MonoBehaviour
             direction = 0;
             StartCoroutine(Co_ShootTimer(Random.Range(1f, 3f)));
         }
-        else
+        else if (status == state.shooting)
         {
             enemy.shieldUp = true;
             shield.SetActive(true);
             status = state.moving;
             direction = oldDirection;
-            StartCoroutine(Co_SwitchMode(Random.Range(3f, 10f)));
+            StartCoroutine(Co_SwitchMode(Random.Range(3f / aggression, 10f / aggression)));
         }
     }
 
