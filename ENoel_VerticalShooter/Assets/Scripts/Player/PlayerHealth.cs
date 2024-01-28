@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class PlayerHealth
@@ -29,12 +30,12 @@ public static class PlayerHealth
 
     public static void TakeDamage()
     {
-        Debug.Log("Hit");
         _health--;
         healthChanged?.Invoke(_health);
         if (_health <= 0)
         {
-            GameOver();
+            gameRunning = false;
+            gameOver();
         }
     }
 
@@ -46,11 +47,5 @@ public static class PlayerHealth
     public static void SetGameRunning(bool newValue)
     {
         gameRunning = newValue;
-    }
-
-    public static void GameOver()
-    {
-        gameRunning = false;
-        gameOver();
     }
 }

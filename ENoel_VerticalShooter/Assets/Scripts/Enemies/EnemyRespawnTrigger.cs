@@ -6,9 +6,10 @@ public class EnemyRespawnTrigger : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy Rusher"))
         {
-            other.gameObject.GetComponent<Enemy>().Respawn();
+            EnemyRusher enemy = other.gameObject.GetComponent<EnemyRusher>();
+            enemy.Respawn();
         }
     }
 }

@@ -35,4 +35,10 @@ public class PlayerMovement : MonoBehaviour
         // Set current position to that limited value
         transform.position = position;
     }
+
+    public Vector2 GetDirection()
+    {
+        return _input;
+    }
+
 }

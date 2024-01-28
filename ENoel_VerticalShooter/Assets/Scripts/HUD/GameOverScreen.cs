@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
-    public GameObject buttons, restartButton, homeButton, lastSelectedButton;
+    public GameObject player, buttons, restartButton, homeButton, lastSelectedButton;
 
     private void Awake()
     {
@@ -60,10 +60,17 @@ public class GameOverScreen : MonoBehaviour
     IEnumerator Co_WaitForGameOver()
     {
         yield return new WaitForSeconds(1.5f);
+        Destroy(player);
         Time.timeScale = 0f;
         GetComponent<Canvas>().enabled = true;
         buttons.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(restartButton);
+    }
+
+    // unsubscribe from event on destroy to prevent missing exception error
+    private void OnDestroy()
+    {
+        PlayerHealth.gameOver -= GameIsOver;
     }
 }

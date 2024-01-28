@@ -22,7 +22,6 @@ public class HealthDisplay : MonoBehaviour
     private void OnHealthChanged(int health)
     {
         // Update UI
-        Debug.Log("Health " + health);
         for (int i = 0; i < heartImages.Length; i++)
         {
             heartImages[i].fillAmount = health - i;

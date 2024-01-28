@@ -10,6 +10,8 @@ TagManager:
   - Enemy Shield
   - Shield
   - Enemy Sniper
+  - Enemy Rusher
+  - Enemy Laser
   layers:
   - Default
   - TransparentFX

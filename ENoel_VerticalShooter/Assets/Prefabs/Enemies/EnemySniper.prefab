@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7194307025733490987}
   - component: {fileID: 773336502850035714}
   - component: {fileID: 8167173801785631297}
+  - component: {fileID: 4210953673675721887}
   m_Layer: 0
   m_Name: EnemySniper
-  m_TagString: Enemy
+  m_TagString: Enemy Sniper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,11 +182,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status: 0
   speedModifier: 2
-  bulletPrefab: {fileID: 3489231313718145323, guid: 165629a7819f8cb419860acedd6791eb, type: 3}
+  enemy: {fileID: 4210953673675721887}
+  bulletPrefab: {fileID: 6636614991475413917, guid: 2a2338f3a57268145b7ab73051da965a, type: 3}
   shield: {fileID: 3899659024221606733}
   bulletSpawnLocation: {fileID: 5497215115518896856}
+--- !u!114 &4210953673675721887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2627725936196722054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e41a9f4f5e6534a85994bde0496cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 1
+  shieldUp: 1
   explosionPrefab: {fileID: 3706180792576682218, guid: 1623a85b56ef9f6479d362139844548b, type: 3}
-  respawnY: 10
 --- !u!1 &3899659024221606733
 GameObject:
   m_ObjectHideFlags: 0

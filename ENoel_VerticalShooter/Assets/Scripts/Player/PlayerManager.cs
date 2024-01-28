@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
 {
     public GameObject explosionPrefab;
 
+    private Rigidbody2D thisRigidbody;
+
     private void Awake()
     {
         PlayerHealth.gameOver += GameIsOver;
@@ -22,5 +24,11 @@ public class PlayerManager : MonoBehaviour
     {
         Instantiate(explosionPrefab, transform.position, transform.rotation);
         gameObject.SetActive(false);
+    }
+
+    // unsubscribe from event on destroy to prevent missing exception error
+    private void OnDestroy()
+    {
+        PlayerHealth.gameOver -= GameIsOver;
     }
 }

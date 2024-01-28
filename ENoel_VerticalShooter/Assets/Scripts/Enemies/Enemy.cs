@@ -5,9 +5,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public enum type
+    {
+        rusher,
+        sniper
+    }
+
+    public type enemyType;
+    public bool shieldUp = false;
+
+    private int scoreMultiplier = 1;
+
     [SerializeField] private GameObject explosionPrefab;
-    [SerializeField] private float respawnY = 10;
-    private float _respawnX;
 
     private bool cameraCollision = false;
     private bool laserCollision = false;
@@ -18,23 +27,19 @@ public class Enemy : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
-    // Start is called before the first frame update
+
     void Start()
     {
-        _respawnX = transform.position.x;
-    }
-
-    public void Respawn()
-    {
-        gameObject.SetActive(true);
-        transform.position = new Vector2(_respawnX, respawnY);
-        _rigidbody2D.velocity = Vector2.zero;
+        if (enemyType == type.sniper)
+        {
+            scoreMultiplier = 3;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.CompareTag("Laser"))
+        if (other.gameObject.CompareTag("Laser") && !shieldUp)
         {
             laserCollision = true;
         }
@@ -65,11 +70,10 @@ public class Enemy : MonoBehaviour
 
     private void Despawn()
     {
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
         cameraCollision = false;
         laserCollision = false;
-        PlayerScore.SetScore(PlayerScore.GetScore() + 10);
-        gameObject.SetActive(false);
-        GameManager.instance.UnlistEnemy(gameObject);
-        Instantiate(explosionPrefab, transform.position, transform.rotation);
+        PlayerScore.SetScore(PlayerScore.GetScore() + 10 * scoreMultiplier);
+        Destroy(gameObject);
     }
 }

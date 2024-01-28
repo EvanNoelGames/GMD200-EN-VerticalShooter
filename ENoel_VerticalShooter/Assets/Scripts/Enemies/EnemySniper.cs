@@ -22,10 +22,10 @@ public class EnemySniper : MonoBehaviour
 
     private Rigidbody2D _rb;
 
+    public Enemy enemy;
+
     public GameObject bulletPrefab, shield;
     public Transform bulletSpawnLocation;
-
-    private bool shieldUp = true;
 
     private void Awake()
     {
@@ -79,7 +79,7 @@ public class EnemySniper : MonoBehaviour
     {
         if (status == state.moving)
         {
-            shieldUp = false;
+            enemy.shieldUp = false;
             shield.SetActive(false);
             status = state.shooting;
             oldDirection = direction;
@@ -88,7 +88,7 @@ public class EnemySniper : MonoBehaviour
         }
         else
         {
-            shieldUp = true;
+            enemy.shieldUp = true;
             shield.SetActive(true);
             status = state.moving;
             direction = oldDirection;
@@ -108,68 +108,5 @@ public class EnemySniper : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         Shoot();
-    }
-
-
-    // Enemy Script
-    [SerializeField] private GameObject explosionPrefab;
-    [SerializeField] private float respawnY = 10;
-    private float _respawnX;
-
-    private bool cameraCollision = false;
-    private bool laserCollision = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        _respawnX = transform.position.x;
-    }
-
-    public void Respawn()
-    {
-        gameObject.SetActive(true);
-        transform.position = new Vector2(_respawnX, respawnY);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-
-        if (other.gameObject.CompareTag("Laser") && !shieldUp)
-        {
-            laserCollision = true;
-        }
-        else if (other.gameObject.CompareTag("Camera Zone"))
-        {
-            cameraCollision = true;
-        }
-
-        if (laserCollision && cameraCollision)
-        {
-            Despawn();
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-
-        if (other.gameObject.CompareTag("Laser"))
-        {
-            laserCollision = false;
-        }
-        else if (other.gameObject.CompareTag("Camera Zone"))
-        {
-            cameraCollision = false;
-        }
-
-    }
-
-    private void Despawn()
-    {
-        cameraCollision = false;
-        laserCollision = false;
-        PlayerScore.SetScore(PlayerScore.GetScore() + 30);
-        gameObject.SetActive(false);
-        GameManager.instance.UnlistEnemy(gameObject);
-        Instantiate(explosionPrefab, transform.position, transform.rotation);
     }
 }
