@@ -54,6 +54,18 @@ public class Laser : MonoBehaviour
                 BounceLaser();
             }
         }
+        else if (other.gameObject.CompareTag("Enemy Turret") && !PlayerWeaponsManager.GetPenetrationRounds())
+        {
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            if (!enemy.shieldUp)
+            {
+                StartCoroutine(Co_DestroyLaserRoutine());
+            }
+            else
+            {
+                BounceLaser();
+            }
+        }
         else if (other.gameObject.CompareTag("Player") && bouncing)
         {
             PlayerHealth.TakeDamage();

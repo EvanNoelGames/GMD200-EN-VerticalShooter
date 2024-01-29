@@ -60,7 +60,7 @@ public class EnemyRusher : MonoBehaviour
         }
         _rb.gravityScale = 0.002f;
 
-        StartCoroutine(Co_SwitchMode(Random.Range(3f / aggression, 8f / aggression)));
+        StartCoroutine(Co_SwitchMode(Random.Range(5f / aggression, 15f / aggression)));
     }
 
     private void Moving()

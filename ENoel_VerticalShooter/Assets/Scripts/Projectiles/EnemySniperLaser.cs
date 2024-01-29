@@ -55,7 +55,18 @@ public class EnemySniperLaser : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Enemy Sniper") && bouncing)
         {
-            Debug.Log("bleh");
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            if (!enemy.shieldUp)
+            {
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                BounceLaser();
+            }
+        }
+        else if (other.gameObject.CompareTag("Enemy Turret") && bouncing)
+        {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             if (!enemy.shieldUp)
             {

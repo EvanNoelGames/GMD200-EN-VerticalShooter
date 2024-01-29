@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
     public enum type
     {
         rusher,
-        sniper
+        sniper,
+        turret
     }
 
     public type enemyType;
@@ -33,6 +34,10 @@ public class Enemy : MonoBehaviour
         if (enemyType == type.sniper)
         {
             AddMultiplier(20);
+        }
+        else if (enemyType == type.turret)
+        {
+            AddMultiplier(-5);
         }
     }
 
@@ -80,5 +85,10 @@ public class Enemy : MonoBehaviour
         laserCollision = false;
         PlayerScore.SetScore(PlayerScore.GetScore() + 10 * scoreMultiplier);
         Destroy(gameObject);
+    }
+
+    public Vector2 GetVelocity()
+    {
+        return _rigidbody2D.velocity;
     }
 }

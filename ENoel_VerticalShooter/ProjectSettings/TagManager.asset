@@ -12,6 +12,7 @@ TagManager:
   - Enemy Sniper
   - Enemy Rusher
   - Enemy Laser
+  - Enemy Turret
   layers:
   - Default
   - TransparentFX
