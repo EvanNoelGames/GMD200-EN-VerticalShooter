@@ -27,25 +27,37 @@ public class EnemyTurret : MonoBehaviour
     public Enemy enemy;
 
     public bool hasShield = false;
+    public bool shieldDestroyed = false;
     private bool directionFlippedY = false, directionFlippedX = false;
 
     public GameObject bulletPrefab, shield;
     public Transform bulletSpawnLocation;
 
-    public float aggression = 1f;
+    public int aggression = 1;
 
     private void Awake()
     {
         direction = new Vector2(Random.Range(-100f, 100f), Random.Range(-100f, 100f)).normalized;
-        if (!hasShield)
-        {
-            enemy.shieldUp = false;
-            Destroy(gameObject.transform.Find("Shield").gameObject);
-            enemy.AddMultiplier(-2);
-        }
         status = state.moving;
         _rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(Co_SwitchMode(Random.Range(3f / aggression, 6f / aggression)));
+        StartCoroutine(Co_Start());
+    }
+
+    IEnumerator Co_Start()
+    {
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(Co_SwitchMode(Random.Range(3f, 6f) / aggression));
+    }
+
+    public void Update()
+    {
+        if (!hasShield && !shieldDestroyed)
+        {
+            enemy.shieldUp = false;
+            Destroy(shield);
+            enemy.AddMultiplier(-2);
+            shieldDestroyed = true;
+        }
     }
 
     private void FixedUpdate()
@@ -109,7 +121,7 @@ public class EnemyTurret : MonoBehaviour
             }
             status = state.shooting;
             direction = new Vector2(Random.Range(-100f, 100f), Random.Range(-100f, 100f)).normalized;
-            StartCoroutine(Co_ShootTimer(Random.Range(0f, 2f)));
+            StartCoroutine(Co_ShootTimer(Random.Range(1f, 3f)));
         }
         else if (status == state.shooting)
         {
@@ -121,7 +133,8 @@ public class EnemyTurret : MonoBehaviour
                 shield.SetActive(true);
             }
             status = state.moving;
-            StartCoroutine(Co_SwitchMode(Random.Range(3f / aggression, 6f / aggression)));
+
+            StartCoroutine(Co_SwitchMode(Random.Range(3f, 6f) / aggression));
         }
     }
 
@@ -175,6 +188,16 @@ public class EnemyTurret : MonoBehaviour
             }
             direction = -direction;
         }
+    }
+
+    public void SetAggression(int val)
+    {
+        aggression = val;
+    }
+
+    public void SetShield(bool val)
+    {
+        hasShield = val;
     }
 
     // used to approximate the difference between floats

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 773336502850035714}
   - component: {fileID: 5463332480858379581}
   - component: {fileID: 4210953673675721887}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyTurret
   m_TagString: Enemy Turret
   m_Icon: {fileID: 0}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -574640829
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
   m_Color: {r: 1, g: 0.8107188, b: 0, a: 1}
@@ -184,6 +184,7 @@ MonoBehaviour:
   speedModifier: 3
   enemy: {fileID: 4210953673675721887}
   hasShield: 0
+  shieldDestroyed: 0
   bulletPrefab: {fileID: 6636614991475413917, guid: d3c1bcea85e407948bd0954e33f8bac5, type: 3}
   shield: {fileID: 3899659024221606733}
   bulletSpawnLocation: {fileID: 5497215115518896856}

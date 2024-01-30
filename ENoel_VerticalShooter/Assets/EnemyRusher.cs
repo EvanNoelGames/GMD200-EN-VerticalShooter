@@ -23,25 +23,38 @@ public class EnemyRusher : MonoBehaviour
     public GameObject explosionPrefab, shield;
 
     public bool hasShield = true;
+    public bool shieldDestroyed = false;
 
     private PlayerMovement playerMovement;
     private Rigidbody2D playerPosition;
 
     public int speed = 10;
-    public float aggression = 1f;
+    public int aggression;
 
     private void Awake()
     {
-        if (!hasShield)
-        {
-            Destroy(gameObject.transform.Find("Shield").gameObject);
-            enemy.AddMultiplier(-5);
-        }
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         restingPos = transform.position;
         _rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(Co_Start());
+    }
+
+    IEnumerator Co_Start()
+    {
+        yield return new WaitForSeconds(0.5f);
         Resting();
+    }
+
+    public void Update()
+    {
+        if (!hasShield && !shieldDestroyed)
+        {
+            enemy.shieldUp = false;
+            Destroy(shield);
+            enemy.AddMultiplier(-2);
+            shieldDestroyed = true;
+        }
     }
 
     private void FixedUpdate()
@@ -60,7 +73,7 @@ public class EnemyRusher : MonoBehaviour
         }
         _rb.gravityScale = 0.002f;
 
-        StartCoroutine(Co_SwitchMode(Random.Range(5f / aggression, 15f / aggression)));
+        StartCoroutine(Co_SwitchMode(Random.Range(5f, 15f) / aggression));
     }
 
     private void Moving()
@@ -173,6 +186,21 @@ public class EnemyRusher : MonoBehaviour
     private bool TestDifference(float firstPoint, float secondPoint)
     {
         return Mathf.Abs(secondPoint - firstPoint) <= 0.1f;
+    }
+
+    public void SetAggression(int val)
+    {
+        aggression = val;
+    }
+
+    public void SetShield(bool val)
+    {
+        hasShield = val;
+    }
+
+    public void SetSpeed(int val)
+    {
+        speed = val;
     }
 
 }

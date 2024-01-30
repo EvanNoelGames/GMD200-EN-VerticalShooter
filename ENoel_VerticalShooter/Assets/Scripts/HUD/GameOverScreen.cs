@@ -39,17 +39,16 @@ public class GameOverScreen : MonoBehaviour
     public void SwitchToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-        ResetPlayer();
+        Time.timeScale = 1f;
+        PlayerScore.SetScore(0);
+        PlayerHealth.SetHealth(3);
+        PlayerHealth.SetGameRunning(true);
+        PlayerWeaponsManager.ResetEverything();
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        ResetPlayer();
-    }
-
-    public void ResetPlayer()
-    {
         Time.timeScale = 1f;
         PlayerScore.SetScore(0);
         PlayerHealth.SetHealth(3);

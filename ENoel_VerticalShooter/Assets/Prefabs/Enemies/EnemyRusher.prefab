@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4428272776122792660}
   - component: {fileID: 2258068948354954495}
   - component: {fileID: 4894157337991490829}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyRusher
   m_TagString: Enemy Rusher
   m_Icon: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -574640829
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
   m_Color: {r: 1, g: 0, b: 0.9176221, a: 1}
@@ -183,6 +183,8 @@ MonoBehaviour:
   enemy: {fileID: 4894157337991490829}
   explosionPrefab: {fileID: 3706180792576682218, guid: 1623a85b56ef9f6479d362139844548b, type: 3}
   shield: {fileID: 8686152917980147649}
+  hasShield: 1
+  shieldDestroyed: 0
   speed: 10
   aggression: 1
 --- !u!114 &4894157337991490829
