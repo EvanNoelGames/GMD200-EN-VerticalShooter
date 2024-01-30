@@ -12,6 +12,7 @@ public class WaveManager : MonoBehaviour
 
     private int waveCount = 0;
     private int enemiesLeftToAdd;
+    private int maxEnemiesOnScreen;
 
     private Animator anim;
 
@@ -23,6 +24,8 @@ public class WaveManager : MonoBehaviour
     public EnemyRusher enemyRusher;
     public EnemyTurret enemyTurret;
     public EnemySniper enemySniper;
+
+    public SpawnPoint spawn1, spawn2, spawn3;
 
     // TODO use 2D colliders in a few spots on the level as spawn points. when AddEnemy() is called, check if its colliding with anything
     // if it isn't spawn the enemy there.
@@ -36,7 +39,7 @@ public class WaveManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (waveHappening)
         {
@@ -45,9 +48,159 @@ public class WaveManager : MonoBehaviour
     }
 
     // 1 = turret, 2 = rusher, 3 = sniper
-    public void AddEnemy(int type)
+    IEnumerator Co_AddEnemy(int type, int aggression, bool shield)
     {
-        return;
+        yield return new WaitUntil(() => AvailableSpawn() != 0);
+        if (AvailableSpawn() == 1)
+        {
+            if (type == 1)
+            {
+                EnemyTurret a = Instantiate(enemyTurret, spawn1.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+            }
+            else if (type == 2)
+            {
+                EnemyRusher a = Instantiate(enemyRusher, spawn1.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+            }
+            else if (type == 3)
+            {
+                EnemySniper a = Instantiate(enemySniper, spawn1.GetPosition(), transform.rotation);
+                a.aggression = aggression;
+            }
+        }
+        else if (AvailableSpawn() == 2)
+        {
+
+            if (type == 1)
+            {
+                EnemyTurret a = Instantiate(enemyTurret, spawn2.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+            }
+            else if (type == 2)
+            {
+                EnemyRusher a = Instantiate(enemyRusher, spawn2.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+            }
+            else if (type == 3)
+            {
+                EnemySniper a = Instantiate(enemySniper, spawn2.GetPosition(), transform.rotation);
+                a.aggression = aggression;
+            }
+        }
+        else if (AvailableSpawn() == 3)
+        {
+            if (type == 1)
+            {
+                EnemyTurret a = Instantiate(enemyTurret, spawn3.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+            }
+            else if (type == 2)
+            {
+                EnemyRusher a = Instantiate(enemyRusher, spawn3.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+            }
+            else if (type == 3)
+            {
+                EnemySniper a = Instantiate(enemySniper, spawn3.GetPosition(), transform.rotation);
+                a.aggression = aggression;
+            }
+        }
+    }
+
+    IEnumerator Co_AddEnemy(int type, int aggression, bool shield, int speed)
+    {
+        yield return new WaitUntil(() => AvailableSpawn() != 0);
+        if (AvailableSpawn() == 1)
+        {
+            if (type == 1)
+            {
+                EnemyTurret a = Instantiate(enemyTurret, spawn1.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+                a.speedModifier = speed;
+            }
+            else if (type == 2)
+            {
+                EnemyRusher a = Instantiate(enemyRusher, spawn1.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+                a.speed = speed;
+            }
+            else if (type == 3)
+            {
+                EnemySniper a = Instantiate(enemySniper, spawn1.GetPosition(), transform.rotation);
+                a.aggression = aggression;
+            }
+        }
+        else if (AvailableSpawn() == 2)
+        {
+
+            if (type == 1)
+            {
+                EnemyTurret a = Instantiate(enemyTurret, spawn2.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+                a.speedModifier = speed;
+            }
+            else if (type == 2)
+            {
+                EnemyRusher a = Instantiate(enemyRusher, spawn2.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+                a.speed = speed;
+            }
+            else if (type == 3)
+            {
+                EnemySniper a = Instantiate(enemySniper, spawn2.GetPosition(), transform.rotation);
+                a.aggression = aggression;
+            }
+        }
+        else if (AvailableSpawn() == 3)
+        {
+            if (type == 1)
+            {
+                EnemyTurret a = Instantiate(enemyTurret, spawn3.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+                a.speedModifier = speed;
+            }
+            else if (type == 2)
+            {
+                EnemyRusher a = Instantiate(enemyRusher, spawn3.GetPosition(), transform.rotation);
+                a.hasShield = shield;
+                a.aggression = aggression;
+                a.speed = speed;
+            }
+            else if (type == 3)
+            {
+                EnemySniper a = Instantiate(enemySniper, spawn3.GetPosition(), transform.rotation);
+                a.aggression = aggression;
+            }
+        }
+    }
+
+    private int AvailableSpawn()
+    {
+        if (!spawn2.colliding)
+        {
+            return 2;
+        }
+        else if (!spawn1.colliding)
+        {
+            return 1;
+        }
+        else if (!spawn3.colliding)
+        {
+            return 3;
+        }
+        return 0;
     }
 
     public int GetNumberOfEnemies()
@@ -95,14 +248,15 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(UpdateWaveText());
         yield return new WaitUntil(() => textShowing == true);
         textShowing = false;
-        enemiesLeftToAdd = 0;
+        enemiesLeftToAdd = 8;
+        maxEnemiesOnScreen = 5;
         Instantiate(enemySniper, (new Vector3(0, 6, 0)), transform.rotation);
         Instantiate(enemyTurret, (new Vector3(-2, 1, 0)), transform.rotation).hasShield = false;
         Instantiate(enemyTurret, (new Vector3(0, 1, 0)), transform.rotation).hasShield = true;
         Instantiate(enemyTurret, (new Vector3(2, 1, 0)), transform.rotation).hasShield = false;
         EnemyRusher a = Instantiate(enemyRusher, (new Vector3(0, 2, 0)), transform.rotation);
-        a.hasShield = false;
         a.aggression = 3;
+        a.hasShield = false;
         waveHappening = true;
     }
 
@@ -112,13 +266,15 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(UpdateWaveText());
         yield return new WaitUntil(() => textShowing == true);
         textShowing = false;
-        enemiesLeftToAdd = 0;
+        enemiesLeftToAdd = 7;
+        maxEnemiesOnScreen = 4;
         Instantiate(enemyTurret, (new Vector3(-2, 1, 0)), transform.rotation).hasShield = false;
         Instantiate(enemyTurret, (new Vector3(0, 1, 0)), transform.rotation).hasShield = false;
         Instantiate(enemyTurret, (new Vector3(2, 1, 0)), transform.rotation).hasShield = false;
         EnemyRusher a = Instantiate(enemyRusher, (new Vector3(0, 2, 0)), transform.rotation);
-        a.SetAggression(10);
-        a.SetShield(true);
+        a.aggression = 1;
+        a.hasShield = true;
+        a.speed = 3;
         waveHappening = true;
     }
 
@@ -128,7 +284,8 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(UpdateWaveText());
         yield return new WaitUntil(() => textShowing == true);
         textShowing = false;
-        enemiesLeftToAdd = 0;
+        enemiesLeftToAdd = 6;
+        maxEnemiesOnScreen = 3;
         Instantiate(enemyTurret, (new Vector3(-2, 1, 0)), transform.rotation).hasShield = false;
         Instantiate(enemyTurret, (new Vector3(0, 1, 0)), transform.rotation).hasShield = true;
         Instantiate(enemyTurret, (new Vector3(2, 1, 0)), transform.rotation).hasShield = false;
@@ -141,7 +298,8 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(UpdateWaveText());
         yield return new WaitUntil(() => textShowing == true);
         textShowing = false;
-        enemiesLeftToAdd = 0;
+        enemiesLeftToAdd = 5;
+        maxEnemiesOnScreen = 2;
         Instantiate(enemyTurret, (new Vector3(-2, 1, 0)), transform.rotation).hasShield = false;
         Instantiate(enemyTurret, (new Vector3(2, 1, 0)), transform.rotation).hasShield = false;
         waveHappening = true;
@@ -153,8 +311,10 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(UpdateWaveText());
         yield return new WaitUntil(() => textShowing == true);
         textShowing = false;
-        enemiesLeftToAdd = 0;
-        Instantiate(enemyTurret, (new Vector3(0, 1, 0)), transform.rotation).hasShield = false;
+        enemiesLeftToAdd = 4;
+        maxEnemiesOnScreen = 2;
+        Instantiate(enemyTurret, (new Vector3(-1, 1, 0)), transform.rotation).hasShield = false;
+        Instantiate(enemyTurret, (new Vector3(1, 1, 0)), transform.rotation).hasShield = false;
         waveHappening = true;
     }
 
@@ -167,7 +327,6 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         waveCounterCanvas.gameObject.SetActive(false);
         textShowing = true;
-
     }
 
     private void RunWave()
@@ -181,9 +340,10 @@ public class WaveManager : MonoBehaviour
                 waveHappening = false;
                 StartCoroutine(Wave2());
             }
-            else if (enemiesLeftToAdd != 0)
+            else if (enemiesLeftToAdd != 0 && maxEnemiesOnScreen > numberOfEnemies)
             {
-                AddEnemy(1);
+                enemiesLeftToAdd--;
+                StartCoroutine(Co_AddEnemy(1, 1, false));
             }
         }
         else if (waveCount == 2)
@@ -193,9 +353,10 @@ public class WaveManager : MonoBehaviour
                 waveHappening = false;
                 StartCoroutine(Wave3());
             }
-            else if (enemiesLeftToAdd != 0)
+            else if (enemiesLeftToAdd != 0 && maxEnemiesOnScreen > numberOfEnemies)
             {
-                AddEnemy(1);
+                enemiesLeftToAdd--;
+                StartCoroutine(Co_AddEnemy(1, 1, false));
             }
         }
         else if (waveCount == 3)
@@ -205,9 +366,14 @@ public class WaveManager : MonoBehaviour
                 waveHappening = false;
                 StartCoroutine(Wave4());
             }
-            else if (enemiesLeftToAdd != 0)
+            else if (enemiesLeftToAdd != 0 && maxEnemiesOnScreen > numberOfEnemies)
             {
-                AddEnemy(1);
+                enemiesLeftToAdd--;
+                if (enemiesLeftToAdd < 2)
+                {
+                    StartCoroutine(Co_AddEnemy(2, 1, false, 5));
+                }
+                StartCoroutine(Co_AddEnemy(1, 1, false));
             }
         }
         else if (waveCount == 4)
@@ -217,9 +383,14 @@ public class WaveManager : MonoBehaviour
                 waveHappening = false;
                 StartCoroutine(Wave5());
             }
-            else if (enemiesLeftToAdd != 0)
+            else if (enemiesLeftToAdd != 0 && maxEnemiesOnScreen > numberOfEnemies)
             {
-                AddEnemy(1);
+                enemiesLeftToAdd--;
+                if (enemiesLeftToAdd < 2)
+                {
+                    StartCoroutine(Co_AddEnemy(2, 1, true, 7));
+                }
+                StartCoroutine(Co_AddEnemy(1, 1, false));
             }
         }
         else if (waveCount == 5)
@@ -229,9 +400,14 @@ public class WaveManager : MonoBehaviour
                 waveHappening = false;
                 StartCoroutine(EndOfGame());
             }
-            else if (enemiesLeftToAdd != 0)
+            else if (enemiesLeftToAdd != 0 && maxEnemiesOnScreen > numberOfEnemies)
             {
-                AddEnemy(1);
+                enemiesLeftToAdd--;
+                if (enemiesLeftToAdd < 2)
+                {
+                    StartCoroutine(Co_AddEnemy(1, 1, true, 7));
+                }
+                StartCoroutine(Co_AddEnemy(1, 1, false));
             }
         }
     }

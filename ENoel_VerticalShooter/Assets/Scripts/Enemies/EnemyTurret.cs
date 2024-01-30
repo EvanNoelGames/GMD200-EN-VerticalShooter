@@ -190,16 +190,6 @@ public class EnemyTurret : MonoBehaviour
         }
     }
 
-    public void SetAggression(int val)
-    {
-        aggression = val;
-    }
-
-    public void SetShield(bool val)
-    {
-        hasShield = val;
-    }
-
     // used to approximate the difference between floats
     private bool TestDifference(float firstPoint, float secondPoint)
     {

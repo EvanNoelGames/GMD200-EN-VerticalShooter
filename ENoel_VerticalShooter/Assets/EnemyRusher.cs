@@ -187,20 +187,4 @@ public class EnemyRusher : MonoBehaviour
     {
         return Mathf.Abs(secondPoint - firstPoint) <= 0.1f;
     }
-
-    public void SetAggression(int val)
-    {
-        aggression = val;
-    }
-
-    public void SetShield(bool val)
-    {
-        hasShield = val;
-    }
-
-    public void SetSpeed(int val)
-    {
-        speed = val;
-    }
-
 }
