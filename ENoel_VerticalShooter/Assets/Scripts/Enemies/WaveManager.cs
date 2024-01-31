@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,10 +29,12 @@ public class WaveManager : MonoBehaviour
 
     public SpawnPoint spawn1, spawn2, spawn3;
 
-    // TODO use 2D colliders in a few spots on the level as spawn points. when AddEnemy() is called, check if its colliding with anything
-    // if it isn't spawn the enemy there.
+    public WinScreen winScreen;
 
-    // Start is called before the first frame update
+    // TODO Sometimes multiple enemies are spawned at once, specifically on the later waves, the ones with the if else statements.
+    // They always spawn inside eachother
+    // Maybe make a spawn enemy coroutine.
+
     void Start()
     {
         waveText = waveCounterCanvas.gameObject.GetComponentInChildren<TextMeshProUGUI>();
@@ -234,12 +238,7 @@ public class WaveManager : MonoBehaviour
         anim.Play("FadeIn");
         yield return new WaitForSeconds(3.0f);
         waveCounterCanvas.gameObject.SetActive(false);
-        Time.timeScale = 1f;
-        PlayerScore.SetScore(0);
-        PlayerHealth.SetHealth(3);
-        PlayerHealth.SetGameRunning(true);
-        PlayerWeaponsManager.ResetEverything();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        winScreen.GameIsOver();
     }
 
     IEnumerator Wave5()
@@ -389,7 +388,7 @@ public class WaveManager : MonoBehaviour
             else if (enemiesLeftToAdd != 0 && maxEnemiesOnScreen > numberOfEnemies)
             {
                 enemiesLeftToAdd--;
-                if (enemiesLeftToAdd <= 2)
+                if (enemiesLeftToAdd < 3)
                 {
                     StartCoroutine(Co_AddEnemy(2, 1, true, 7));
                 }
@@ -409,7 +408,7 @@ public class WaveManager : MonoBehaviour
             else if (enemiesLeftToAdd != 0 && maxEnemiesOnScreen > numberOfEnemies)
             {
                 enemiesLeftToAdd--;
-                if (enemiesLeftToAdd <= 2)
+                if (enemiesLeftToAdd < 3)
                 {
                     StartCoroutine(Co_AddEnemy(1, 1, true, 7));
                 }
