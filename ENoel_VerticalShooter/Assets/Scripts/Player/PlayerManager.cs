@@ -9,9 +9,13 @@ public class PlayerManager : MonoBehaviour
 
     private Rigidbody2D thisRigidbody;
 
+    public Animator flash;
+
     private void Awake()
     {
+        flash.speed = 0f;
         PlayerHealth.gameOver += GameIsOver;
+        PlayerHealth.healthChanged += OnHealthChanged;
     }
 
     private void GameIsOver()
@@ -20,9 +24,16 @@ public class PlayerManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void OnHealthChanged(int health)
+    {
+        flash.speed = 1;
+        flash.Play("Flash", 0, 0);
+    }
+
     // unsubscribe from event on destroy to prevent missing exception error
     private void OnDestroy()
     {
         PlayerHealth.gameOver -= GameIsOver;
+        PlayerHealth.healthChanged -= OnHealthChanged;
     }
 }

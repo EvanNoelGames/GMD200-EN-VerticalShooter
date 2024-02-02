@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2794617238206821399}
   - component: {fileID: 7507000162872222026}
   - component: {fileID: 3903304503095549680}
+  - component: {fileID: 3183060079831029969}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -163,6 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 3706180792576682218, guid: 1623a85b56ef9f6479d362139844548b, type: 3}
+  flash: {fileID: 3183060079831029969}
+  flashClip: {fileID: 7400000, guid: 583b9ea32fb67e84181b725402ba89b8, type: 2}
 --- !u!60 &7507000162872222026
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -307,6 +310,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &3183060079831029969
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621503424123479}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7d5ea888f66548478916f8d7351765e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2910008555943101056
 GameObject:
   m_ObjectHideFlags: 0
