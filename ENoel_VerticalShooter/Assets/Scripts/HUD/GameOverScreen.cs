@@ -12,6 +12,8 @@ public class GameOverScreen : MonoBehaviour
 {
     public GameObject player, buttons, restartButton, homeButton, lastSelectedButton;
 
+    public AudioSource deathSound;
+
     private void Awake()
     {
         PlayerHealth.gameOver += GameIsOver;
@@ -19,6 +21,7 @@ public class GameOverScreen : MonoBehaviour
 
     private void GameIsOver()
     {
+        deathSound.Play();
         StartCoroutine(Co_WaitForGameOver());
     }
 

@@ -14,12 +14,6 @@ public class PlayerManager : MonoBehaviour
         PlayerHealth.gameOver += GameIsOver;
     }
 
-    [ContextMenu("damage")]
-    public void TakeDamage()
-    {
-        PlayerHealth.TakeDamage();
-    }
-
     private void GameIsOver()
     {
         Instantiate(explosionPrefab, transform.position, transform.rotation);
