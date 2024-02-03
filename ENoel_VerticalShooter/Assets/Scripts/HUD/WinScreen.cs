@@ -7,14 +7,21 @@ using UnityEngine.SceneManagement;
 
 public class WinScreen : MonoBehaviour
 {
-    public GameObject buttons, restartButton, homeButton, lastSelectedButton;
+    public GameObject player, buttons, restartButton, homeButton, lastSelectedButton;
     public TextMeshProUGUI scoreText;
     public Canvas canvas;
+
+    private void Awake()
+    {
+        canvas.enabled = false;
+        buttons.SetActive(false);
+    }
 
     public void GameIsOver()
     {
         canvas.enabled = true;
         buttons.SetActive(true);
+        player.SetActive(false);
     }
 
     private void Update()
@@ -46,8 +53,6 @@ public class WinScreen : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        canvas.enabled = false;
-        buttons.SetActive(false);
         Time.timeScale = 1f;
         PlayerScore.SetScore(0);
         PlayerHealth.SetHealth(3);

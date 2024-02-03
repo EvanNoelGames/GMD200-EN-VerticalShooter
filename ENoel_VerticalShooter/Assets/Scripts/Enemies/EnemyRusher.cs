@@ -33,6 +33,14 @@ public class EnemyRusher : MonoBehaviour
 
     private void Awake()
     {
+        enemy.hasShield = hasShield;
+        if (!hasShield && !shieldDestroyed)
+        {
+            enemy.shieldUp = false;
+            Destroy(shield);
+            enemy.AddMultiplier(-2);
+            shieldDestroyed = true;
+        }
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         restingPos = transform.position;
@@ -102,8 +110,8 @@ public class EnemyRusher : MonoBehaviour
         {
             if (hasShield)
             {
-                enemy.shieldUp = false;
                 shield.SetActive(false);
+                enemy.shieldUp = false;
             }
             status = state.moving;
             Moving();
@@ -115,8 +123,8 @@ public class EnemyRusher : MonoBehaviour
     {
         if (hasShield)
         {
-            enemy.shieldUp = true;
             shield.SetActive(true);
+            enemy.shieldUp = true;
         }
         // reset velocity to 0 to prevent flinging
         _rb.velocity = new Vector2(0f, 0f);

@@ -5,7 +5,7 @@ using UnityEngine;
 public static class PlayerWeaponsManager
 {
     // determines how fast the player can shoot their laser
-    public static float timeBetweenShots = 0.25f;
+    public static float timeBetweenShots = 0.75f;
     // determines if the player's lasers get destroyed after hitting an enemy
     public static bool penetrationRounds = false;
     // determines how fast the player's lasers travel
@@ -13,7 +13,7 @@ public static class PlayerWeaponsManager
 
     public static void ResetEverything()
     {
-        timeBetweenShots = 0.25f;
+        timeBetweenShots = 0.75f;
         penetrationRounds = false;
         laserSpeed = 10f;
     }

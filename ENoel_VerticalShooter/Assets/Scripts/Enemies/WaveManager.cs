@@ -369,7 +369,7 @@ public class WaveManager : MonoBehaviour
             }
             else if (enemiesLeftToAdd != 0 && maxEnemiesOnScreen > numberOfEnemies && !addingEnemy)
             {
-                StartCoroutine(Co_AddEnemy(1, 1, false, 2));
+                StartCoroutine(Co_AddEnemy(1, 2, false, 2));
             }
         }
         else if (waveCount == 2)
@@ -381,7 +381,7 @@ public class WaveManager : MonoBehaviour
             }
             else if (enemiesLeftToAdd != 0 && maxEnemiesOnScreen > numberOfEnemies && !addingEnemy)
             {
-                StartCoroutine(Co_AddEnemy(1, 1, false));
+                StartCoroutine(Co_AddEnemy(1, 3, false, 4));
             }
         }
         else if (waveCount == 3)
@@ -399,7 +399,7 @@ public class WaveManager : MonoBehaviour
                 }
                 else
                 {
-                    StartCoroutine(Co_AddEnemy(1, 1, false));
+                    StartCoroutine(Co_AddEnemy(1, 4, false, 4));
                 }
             }
         }
@@ -418,7 +418,7 @@ public class WaveManager : MonoBehaviour
                 }
                 else
                 {
-                    StartCoroutine(Co_AddEnemy(1, 1, false));
+                    StartCoroutine(Co_AddEnemy(1, 5, false, 4));
                 }
             }
         }
@@ -437,7 +437,7 @@ public class WaveManager : MonoBehaviour
                 }
                 else
                 {
-                    StartCoroutine(Co_AddEnemy(1, 1, false));
+                    StartCoroutine(Co_AddEnemy(1, 5, false, 5));
                 }
             }
         }

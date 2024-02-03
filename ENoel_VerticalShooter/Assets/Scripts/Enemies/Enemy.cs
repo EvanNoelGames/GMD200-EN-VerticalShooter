@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     public type enemyType;
     public bool shieldUp = false;
+    public bool hasShield;
 
     private int scoreMultiplier = 10;
 

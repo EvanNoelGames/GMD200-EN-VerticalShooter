@@ -181,14 +181,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: 0
-  speedModifier: 3
+  speedModifier: 2
   enemy: {fileID: 4210953673675721887}
   hasShield: 0
   shieldDestroyed: 0
   bulletPrefab: {fileID: 6636614991475413917, guid: d3c1bcea85e407948bd0954e33f8bac5, type: 3}
   shield: {fileID: 3899659024221606733}
   bulletSpawnLocation: {fileID: 5497215115518896856}
-  aggression: 1
+  aggression: 2
 --- !u!114 &4210953673675721887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 2
   shieldUp: 1
+  hasShield: 0
   explosionPrefab: {fileID: 3706180792576682218, guid: 1623a85b56ef9f6479d362139844548b, type: 3}
 --- !u!1 &3899659024221606733
 GameObject:

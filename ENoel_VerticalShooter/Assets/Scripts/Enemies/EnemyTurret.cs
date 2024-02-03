@@ -37,6 +37,14 @@ public class EnemyTurret : MonoBehaviour
 
     private void Awake()
     {
+        enemy.hasShield = hasShield;
+        if (!hasShield && !shieldDestroyed)
+        {
+            enemy.shieldUp = false;
+            Destroy(shield);
+            enemy.AddMultiplier(-2);
+            shieldDestroyed = true;
+        }
         direction = new Vector2(Random.Range(-100f, 100f), Random.Range(-100f, 100f)).normalized;
         status = state.moving;
         _rb = GetComponent<Rigidbody2D>();
@@ -116,8 +124,8 @@ public class EnemyTurret : MonoBehaviour
         {
             if (hasShield)
             {
-                enemy.shieldUp = false;
                 shield.SetActive(false);
+                enemy.shieldUp = false;
             }
             status = state.shooting;
             direction = new Vector2(Random.Range(-100f, 100f), Random.Range(-100f, 100f)).normalized;
@@ -129,8 +137,8 @@ public class EnemyTurret : MonoBehaviour
             directionFlippedX = false;
             if (hasShield)
             {
-                enemy.shieldUp = true;
                 shield.SetActive(true);
+                enemy.shieldUp = true;
             }
             status = state.moving;
 
