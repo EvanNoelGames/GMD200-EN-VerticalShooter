@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && !maxShotsReached)
+        if (Input.GetButton("Fire1") && !maxShotsReached)
         {
             StartCoroutine(Co_ShootRoutine());
         }

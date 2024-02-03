@@ -1728,6 +1728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5fb1d6fd22b55489b9324596211549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1281702878}
   buttons: {fileID: 1827055485}
   restartButton: {fileID: 318139255}
   homeButton: {fileID: 422216257}
@@ -3870,6 +3871,10 @@ PrefabInstance:
     - target: {fileID: 621503424123479, guid: ee66f4edb27f15b429a6cf5a0b22a315, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334597634157793463, guid: ee66f4edb27f15b429a6cf5a0b22a315, type: 3}
+      propertyPath: shotTime
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6378406049967772278, guid: ee66f4edb27f15b429a6cf5a0b22a315, type: 3}
       propertyPath: m_LocalPosition.x
