@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] private Transform bulletSpawnLocation;
+    [SerializeField] private Transform bulletSpawnLocation, bulletSpawnLocation2, bulletSpawnLocation3;
     [SerializeField] GameObject bulletPrefab;
 
     public AudioSource laserSound;
@@ -24,8 +24,14 @@ public class PlayerShooting : MonoBehaviour
 
     private void Fire()
     {
-        // Shoot bullet
         Instantiate(bulletPrefab, bulletSpawnLocation.position, bulletSpawnLocation.rotation);
+    }
+
+    private void ShotgunFire()
+    {
+        Instantiate(bulletPrefab, bulletSpawnLocation.position, bulletSpawnLocation2.rotation);
+        Instantiate(bulletPrefab, bulletSpawnLocation.position, bulletSpawnLocation.rotation);
+        Instantiate(bulletPrefab, bulletSpawnLocation.position, bulletSpawnLocation3.rotation);
     }
 
     IEnumerator Co_ShootRoutine()
@@ -34,7 +40,14 @@ public class PlayerShooting : MonoBehaviour
         {
             laserSound.Play();
             maxShotsReached = true;
-            Fire();
+            if (!PlayerWeaponsManager.shotgun)
+            {
+                Fire();
+            }
+            else
+            {
+                ShotgunFire();
+            }
             yield return new WaitForSeconds(PlayerWeaponsManager.GetTimeBetweenShots());
             maxShotsReached = false;
         }

@@ -429,7 +429,7 @@ public class WaveManager : MonoBehaviour
             {
                 if (enemiesLeftToAdd < 2)
                 {
-                    StartCoroutine(Co_AddEnemy(2, 1, true, 5));
+                    StartCoroutine(Co_AddEnemy(2, 3, true, 5));
                 }
                 else
                 {
@@ -452,7 +452,7 @@ public class WaveManager : MonoBehaviour
             {
                 if (enemiesLeftToAdd < 3)
                 {
-                    StartCoroutine(Co_AddEnemy(2, 1, true, 7));
+                    StartCoroutine(Co_AddEnemy(2, 3, false, 7));
                 }
                 else
                 {
@@ -486,21 +486,22 @@ public class WaveManager : MonoBehaviour
         if (num == 1)
         {
             PlayerWeaponsManager.laserSpeed += 5f;
-            return "Bonus: Laser Speed Up";
+            return "Bonus: Faster Lasers";
         }
         else if (num == 2)
         {
             PlayerWeaponsManager.timeBetweenShots -= 0.25f;
-            return "Bonus: Fire Speed Up";
+            return "Bonus: Faster Fire Speed";
         }
         else if (num == 3)
         {
-            PlayerWeaponsManager.laserSpeed += 2f;
-            return "Bonus: Laser Speed Up";
+            PlayerWeaponsManager.shotgun = true;
+            return "Bonus: Shotgun";
         }
         else if (num == 4)
         {
-            return "Bonus: Shotgun";
+            PlayerWeaponsManager.penetrationRounds = true;  
+            return "Bonus: Shield-Destroying Lasers";
         }
         return "error";
     }

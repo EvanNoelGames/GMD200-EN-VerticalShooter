@@ -30,10 +30,10 @@ public class Laser : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.CompareTag("Enemy Rusher") && !PlayerWeaponsManager.GetPenetrationRounds())
+        if (other.gameObject.CompareTag("Enemy Rusher"))
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            if (!enemy.shieldUp)
+            if (!enemy.shieldUp || PlayerWeaponsManager.GetPenetrationRounds())
             {
                 StartCoroutine(Co_DestroyLaserRoutine());
             }
@@ -42,10 +42,10 @@ public class Laser : MonoBehaviour
                 BounceLaser();
             }
         }
-        else if (other.gameObject.CompareTag("Enemy Sniper") && !PlayerWeaponsManager.GetPenetrationRounds())
+        else if (other.gameObject.CompareTag("Enemy Sniper"))
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            if (!enemy.shieldUp)
+            if (!enemy.shieldUp || PlayerWeaponsManager.GetPenetrationRounds())
             {
                 StartCoroutine(Co_DestroyLaserRoutine());
             }
@@ -54,10 +54,10 @@ public class Laser : MonoBehaviour
                 BounceLaser();
             }
         }
-        else if (other.gameObject.CompareTag("Enemy Turret") && !PlayerWeaponsManager.GetPenetrationRounds())
+        else if (other.gameObject.CompareTag("Enemy Turret"))
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            if (!enemy.shieldUp)
+            if (!enemy.shieldUp || PlayerWeaponsManager.GetPenetrationRounds())
             {
                 StartCoroutine(Co_DestroyLaserRoutine());
             }

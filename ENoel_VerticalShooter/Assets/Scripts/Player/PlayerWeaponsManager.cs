@@ -8,6 +8,7 @@ public static class PlayerWeaponsManager
     public static float timeBetweenShots = 0.75f;
     // determines if the player's lasers get destroyed after hitting an enemy
     public static bool penetrationRounds = false;
+    public static bool shotgun = false;
     // determines how fast the player's lasers travel
     public static float laserSpeed = 10f;
 
@@ -16,6 +17,7 @@ public static class PlayerWeaponsManager
         timeBetweenShots = 0.75f;
         penetrationRounds = false;
         laserSpeed = 10f;
+        shotgun = false;
     }
 
     public static float GetTimeBetweenShots()

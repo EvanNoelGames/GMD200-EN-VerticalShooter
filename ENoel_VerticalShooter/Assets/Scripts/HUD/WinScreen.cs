@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class WinScreen : MonoBehaviour
 {
     public GameObject player, buttons, restartButton, homeButton, lastSelectedButton;
-    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreText, highscoreText;
     public Canvas canvas;
 
     private void Awake()
@@ -28,6 +28,7 @@ public class WinScreen : MonoBehaviour
     {
 
         scoreText.SetText(PlayerScore.GetScore().ToString("D9"));
+        highscoreText.SetText(PlayerScore.GetHighScore().ToString("D9"));
 
         if (EventSystem.current.currentSelectedGameObject != null && GetComponent<Canvas>().enabled)
         {
