@@ -318,7 +318,7 @@ public class WaveManager : MonoBehaviour
         enemiesLeftToAdd = 10;
         maxEnemiesOnScreen = 5;
         Instantiate(enemyTurret, (new Vector3(-2, 1, 0)), transform.rotation).hasShield = false;
-        Instantiate(enemyTurret, (new Vector3(0, 1, 0)), transform.rotation).hasShield = true;
+        Instantiate(enemyRusher, (new Vector3(0, 1, 0)), transform.rotation).hasShield = true;
         Instantiate(enemyTurret, (new Vector3(2, 1, 0)), transform.rotation).hasShield = false;
         waveHappening = true;
     }
