@@ -29,9 +29,9 @@ public class PlayerShooting : MonoBehaviour
 
     private void ShotgunFire()
     {
-        Instantiate(bulletPrefab, bulletSpawnLocation.position, bulletSpawnLocation2.rotation);
+        Instantiate(bulletPrefab, bulletSpawnLocation2.position, bulletSpawnLocation.rotation);
         Instantiate(bulletPrefab, bulletSpawnLocation.position, bulletSpawnLocation.rotation);
-        Instantiate(bulletPrefab, bulletSpawnLocation.position, bulletSpawnLocation3.rotation);
+        Instantiate(bulletPrefab, bulletSpawnLocation3.position, bulletSpawnLocation.rotation);
     }
 
     IEnumerator Co_ShootRoutine()

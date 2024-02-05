@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.CompareTag("Laser") && !shieldUp)
+        if (other.gameObject.CompareTag("Laser") && (!shieldUp || PlayerWeaponsManager.penetrationRounds))
         {
             laserCollision = true;
         }
