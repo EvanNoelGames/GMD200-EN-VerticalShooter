@@ -51,11 +51,13 @@ public class EnemyTurret : MonoBehaviour
         StartCoroutine(Co_Start());
     }
 
+    // begin the movement of the turret, only called at the start of its life
     IEnumerator Co_Start()
     {
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(Co_SwitchMode(Random.Range(3f, 6f) / aggression));
     }
+
 
     public void Update()
     {
@@ -118,6 +120,7 @@ public class EnemyTurret : MonoBehaviour
         StartCoroutine(Co_SwitchMode(0.1f));
     }
 
+    // switch the turret's mode between moving and shooting
     private void SwitchMode()
     {
         if (status == state.moving)

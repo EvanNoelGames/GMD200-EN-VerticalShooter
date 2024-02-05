@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-
+        // do not let the mouse deselect a menu icon
         if (EventSystem.current.currentSelectedGameObject != null && GetComponent<Canvas>().enabled)
         {
             lastSelectedButton = EventSystem.current.currentSelectedGameObject;

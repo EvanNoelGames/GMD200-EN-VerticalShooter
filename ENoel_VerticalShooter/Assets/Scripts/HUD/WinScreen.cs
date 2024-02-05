@@ -30,6 +30,7 @@ public class WinScreen : MonoBehaviour
         scoreText.SetText(PlayerScore.GetScore().ToString("D9"));
         highscoreText.SetText(PlayerScore.GetHighScore().ToString("D9"));
 
+        // do not let the mouse deselect a menu icon
         if (EventSystem.current.currentSelectedGameObject != null && GetComponent<Canvas>().enabled)
         {
             lastSelectedButton = EventSystem.current.currentSelectedGameObject;

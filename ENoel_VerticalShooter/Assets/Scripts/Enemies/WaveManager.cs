@@ -40,10 +40,6 @@ public class WaveManager : MonoBehaviour
 
     public WinScreen winScreen;
 
-    // TODO Sometimes multiple enemies are spawned at once, specifically on the later waves, the ones with the if else statements.
-    // They always spawn inside eachother
-    // Maybe make a spawn enemy coroutine.
-
     void Start()
     {
         waveText = waveCounterCanvas.gameObject.GetComponentInChildren<TextMeshProUGUI>();
@@ -360,6 +356,7 @@ public class WaveManager : MonoBehaviour
         waveHappening = true;
     }
 
+    // update the text that is shown at the start of each wave
     IEnumerator UpdateWaveText()
     {
         waveCount++;
