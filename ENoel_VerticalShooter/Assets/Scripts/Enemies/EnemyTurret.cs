@@ -122,7 +122,7 @@ public class EnemyTurret : MonoBehaviour
     {
         if (status == state.moving)
         {
-            if (hasShield)
+            if (hasShield && shield != null)
             {
                 shield.SetActive(false);
                 enemy.shieldUp = false;
@@ -135,7 +135,7 @@ public class EnemyTurret : MonoBehaviour
         {
             directionFlippedY = false;
             directionFlippedX = false;
-            if (hasShield)
+            if (hasShield && shield != null)
             {
                 shield.SetActive(true);
                 enemy.shieldUp = true;

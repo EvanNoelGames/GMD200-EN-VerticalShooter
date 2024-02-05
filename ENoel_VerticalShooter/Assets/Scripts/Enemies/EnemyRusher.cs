@@ -75,7 +75,7 @@ public class EnemyRusher : MonoBehaviour
 
     private void Resting()
     {
-        if (hasShield)
+        if (hasShield && shield != null)
         {
             enemy.shieldUp = true;
         }
@@ -108,7 +108,7 @@ public class EnemyRusher : MonoBehaviour
         }
         else if (status == state.resting)
         {
-            if (hasShield)
+            if (hasShield && shield != null)
             {
                 shield.SetActive(false);
                 enemy.shieldUp = false;
@@ -121,7 +121,7 @@ public class EnemyRusher : MonoBehaviour
     // called in the "EnemyRespawnTrigger" script
     public void Respawn()
     {
-        if (hasShield)
+        if (hasShield && shield != null)
         {
             shield.SetActive(true);
             enemy.shieldUp = true;

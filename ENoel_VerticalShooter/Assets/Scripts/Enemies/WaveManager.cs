@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
+using UnityEditor.PackageManager;
 
 public class WaveManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class WaveManager : MonoBehaviour
     private TextMeshProUGUI waveText;
 
     private int waveCount = 0;
+    private int bonusCount = 0;
+    private int startHealth;
     private int enemiesLeftToAdd;
     private int maxEnemiesOnScreen;
 
@@ -20,6 +23,7 @@ public class WaveManager : MonoBehaviour
 
     private int numberOfEnemies;
 
+    private bool earnedUpgrade;
     private bool textShowing;
     private bool waveHappening;
     private bool addingEnemy;
@@ -49,6 +53,10 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
+        if (PlayerScore.GetScore() > PlayerScore.GetHighScore())
+        {
+            PlayerScore.SetHighScore(PlayerScore.GetScore());
+        }
         spawn1Available = !spawn1.colliding;
         spawn2Available = !spawn2.colliding;
         spawn3Available = !spawn3.colliding;
@@ -282,6 +290,7 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator Wave4()
     {
+        startHealth = PlayerHealth.GetHealth();
         yield return new WaitForSeconds(1.0f);
         StartCoroutine(UpdateWaveText());
         yield return new WaitUntil(() => textShowing == true);
@@ -301,6 +310,7 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator Wave3()
     {
+        startHealth = PlayerHealth.GetHealth();
         yield return new WaitForSeconds(1.0f);
         StartCoroutine(UpdateWaveText());
         yield return new WaitUntil(() => textShowing == true);
@@ -315,6 +325,7 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator Wave2()
     {
+        startHealth = PlayerHealth.GetHealth();
         yield return new WaitForSeconds(1.0f);
         StartCoroutine(UpdateWaveText());
         yield return new WaitUntil(() => textShowing == true);
@@ -328,6 +339,8 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator Wave1()
     {
+        bonusCount = 0;
+        startHealth = PlayerHealth.GetHealth();
         yield return new WaitForSeconds(1.0f);
         StartCoroutine(UpdateWaveText());
         yield return new WaitUntil(() => textShowing == true);
@@ -348,12 +361,21 @@ public class WaveManager : MonoBehaviour
     IEnumerator UpdateWaveText()
     {
         waveCount++;
-        waveText.SetText("Wave " + waveCount.ToString());
+        if (!earnedUpgrade)
+        {
+            waveText.SetText("Wave " + waveCount.ToString());
+        }
+        else
+        {
+            bonusCount++;
+            waveText.SetText("Wave " + waveCount.ToString() + "\n" + AddUpgrade(bonusCount));
+        }
         waveCounterCanvas.gameObject.SetActive(true);
         anim.Play("FadeIn");
         yield return new WaitForSeconds(3.0f);
         waveCounterCanvas.gameObject.SetActive(false);
         textShowing = true;
+        earnedUpgrade = false;
     }
 
     private void RunWave()
@@ -364,6 +386,10 @@ public class WaveManager : MonoBehaviour
         {
             if (enemiesLeftToAdd == 0 && numberOfEnemies == 0)
             {
+                if (startHealth == PlayerHealth.GetHealth())
+                {
+                    earnedUpgrade = true;
+                }
                 waveHappening = false;
                 StartCoroutine(Wave2());
             }
@@ -376,6 +402,10 @@ public class WaveManager : MonoBehaviour
         {
             if (enemiesLeftToAdd == 0 && numberOfEnemies == 0)
             {
+                if (startHealth == PlayerHealth.GetHealth())
+                {
+                    earnedUpgrade = true;
+                }
                 waveHappening = false;
                 StartCoroutine(Wave3());
             }
@@ -388,6 +418,10 @@ public class WaveManager : MonoBehaviour
         {
             if (enemiesLeftToAdd == 0 && numberOfEnemies == 0)
             {
+                if (startHealth == PlayerHealth.GetHealth())
+                {
+                    earnedUpgrade = true;
+                }
                 waveHappening = false;
                 StartCoroutine(Wave4());
             }
@@ -407,6 +441,10 @@ public class WaveManager : MonoBehaviour
         {
             if (enemiesLeftToAdd == 0 && numberOfEnemies == 0)
             {
+                if (startHealth == PlayerHealth.GetHealth())
+                {
+                    earnedUpgrade = true;
+                }
                 waveHappening = false;
                 StartCoroutine(Wave5());
             }
@@ -441,5 +479,29 @@ public class WaveManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private string AddUpgrade(int num)
+    {
+        if (num == 1)
+        {
+            PlayerWeaponsManager.laserSpeed += 5f;
+            return "Bonus: Laser Speed Up";
+        }
+        else if (num == 2)
+        {
+            PlayerWeaponsManager.timeBetweenShots -= 0.25f;
+            return "Bonus: Fire Speed Up";
+        }
+        else if (num == 3)
+        {
+            PlayerWeaponsManager.laserSpeed += 2f;
+            return "Bonus: Laser Speed Up";
+        }
+        else if (num == 4)
+        {
+            return "Bonus: Shotgun";
+        }
+        return "error";
     }
 }
