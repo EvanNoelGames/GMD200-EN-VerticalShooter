@@ -34,6 +34,7 @@ public class EnemyRusher : MonoBehaviour
     private void Awake()
     {
         enemy.hasShield = hasShield;
+        enemy.shieldUp = true;
         if (!hasShield && !shieldDestroyed)
         {
             enemy.shieldUp = false;

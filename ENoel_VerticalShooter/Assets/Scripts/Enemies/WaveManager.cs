@@ -316,6 +316,7 @@ public class WaveManager : MonoBehaviour
         Instantiate(enemyTurret, (new Vector3(-2, 1, 0)), transform.rotation).hasShield = false;
         EnemyRusher eRusher = enemyRusher;
         eRusher.hasShield = true;
+        eRusher.speed = 4;
         Instantiate(eRusher, (new Vector3(0, 1, 0)), transform.rotation);
         Instantiate(enemyTurret, (new Vector3(2, 1, 0)), transform.rotation).hasShield = false;
         waveHappening = true;

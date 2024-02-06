@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2669489981605750225}
   - component: {fileID: 570338210337961995}
   - component: {fileID: 6569642051074409058}
-  - component: {fileID: 2663013983984210535}
+  - component: {fileID: 2569752533789849086}
   - component: {fileID: 808638459448795490}
   m_Layer: 0
   m_Name: Laser
@@ -114,8 +114,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &2663013983984210535
-PolygonCollider2D:
+--- !u!61 &2569752533789849086
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -150,19 +150,15 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0.25}
-      - {x: -0.5, y: 0}
-      - {x: 0, y: -0.25}
-      - {x: 0.5, y: 0}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.21, y: 0.48}
+  m_EdgeRadius: 0
 --- !u!114 &808638459448795490
 MonoBehaviour:
   m_ObjectHideFlags: 0

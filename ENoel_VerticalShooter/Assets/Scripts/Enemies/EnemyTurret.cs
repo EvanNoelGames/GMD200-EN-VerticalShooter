@@ -38,6 +38,7 @@ public class EnemyTurret : MonoBehaviour
     private void Awake()
     {
         enemy.hasShield = hasShield;
+        enemy.shieldUp = true;
         if (!hasShield && !shieldDestroyed)
         {
             enemy.shieldUp = false;
@@ -57,7 +58,6 @@ public class EnemyTurret : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(Co_SwitchMode(Random.Range(3f, 6f) / aggression));
     }
-
 
     public void Update()
     {
